@@ -31,7 +31,12 @@ const toSearch = async (e) => {
     theUrl = `https://www.themealdb.com/api/json/v1/1/search.php?${
       sVal.length == 1 ? "f" : "s"
     }=${sVal}`,
-    res = await fetch(theUrl),
+    res = await fetch(theUrl, {
+      mode: "cors",
+      headers: {
+        "Access-Control-Allow-Origin": "*",
+      },
+    }),
     data = await res.json(),
     meals = data.meals;
   currMeals = data.meals;
